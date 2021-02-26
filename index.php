@@ -1,9 +1,4 @@
 <?php
-
-
-
-
-
 // PHP Snack 1:
 // Creiamo un array 'matches' contenente altri array i quali rappresentano delle
 // partite di basket di un’ipotetica tappa del calendario. Ogni array della partita
@@ -11,7 +6,7 @@
 // e punti fatti dalla squadra ospite.
 // Stampiamo a schermo tutte le partite con questo schema:
 // Olimpia Milano - Cantù | 55 - 60
-echo "PHP SNACK 1 <br> <br>";
+echo "<b>PHP SNACK 1 </b> <br> <br>";
 
 $matches = [
   // Match 1
@@ -37,16 +32,7 @@ $matches = [
   ],
 ];
 
-echo "<b> match 1 </b> <br>";
-var_dump($matches[0]["teamHome"]);
-echo "<br>";
-var_dump($matches[0]["teamHomePoints"]);
-echo "<br>";
-var_dump($matches[0]["teamGuest"]);
-echo "<br>";
-var_dump($matches[0]["teamGuestPoints"]);
-echo "<br> <br>";
-
+// Print matches value
 for($i = 0; $i < count($matches);$i++){
   echo "*** MATCH N." . strval($i + 1)  . " ***";
   echo "<br>";
@@ -62,14 +48,9 @@ for($i = 0; $i < count($matches);$i++){
 }
 echo "<br> <br>";
 
-echo "<b> Print_r matches</b> <br>";
-print_r($matches);
-echo "<br> <br>";
-echo "<b> var_dump matches</b> <br>";
-var_dump($matches);
 
 
-// ********************************************************************************
+echo "*************************************************************************";
 // PHP Snack 2:
 // Passare come parametri GET name, mail e age e verificare (cercando i metodi che non
 // conosciamo nella documentazione) che:
@@ -79,16 +60,40 @@ var_dump($matches);
 // Se tutto è ok stampare “Accesso riuscito”, altrimenti “Accesso negato”
 
 
-
-// echo "PHP SNACK 2 <br> <br>";
+echo "<br> <b>PHP SNACK 2 </b> <br> <br>";
 // echo "http://localhost/?name=name&mail=mail&age=age <br> <br>";
-//
-// //Prendi parametro dal $_GET
-// echo "<b>GET CONTIENE: </b> <br> <br>";
-// var_dump($_GET);
-// echo "<br> <br>";
-//
-// echo $_GET['mail'];
 
+//
+echo "Nome : " . $_GET['name'] . "<br>";
+echo "Email: " . $_GET['mail'] . "<br>";
+echo "Età  : " . $_GET['age'] . "<br>";
 
+$accessOk = true;
+
+// Check n.1
+if (strlen($_GET['name']) < 3){
+  $accessOk = false;
+  echo "Accesso negato: Lunghezza nome minore di 3 caratteri <br>";
+}
+
+// Check n.2
+if (strpos(($_GET['mail']),"@") === false
+    || strpos(($_GET['mail']),".") === false ){
+  $accessOk = false;
+  echo "Accesso negato: mail non contiene @ e/o il carattere punto <br>";
+}
+
+// Check n.3
+if (!is_numeric(($_GET['age']))){
+  $accessOk = false;
+  echo "Accesso negato: età non è un numero <br>";
+}
 // Non chiudere php se è ultimo elemento
+
+// Print result
+echo "<br><br>";
+if ($accessoOK){
+  echo "Accesso riuscito";
+}else{
+  echo "ACCESSO NEGATO";
+}
